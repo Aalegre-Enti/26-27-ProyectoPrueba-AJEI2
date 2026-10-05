@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Mover2D : MonoBehaviour
+public class FirstPersonMovement : MonoBehaviour
 {
     public float speed = 1;
     void Update()
@@ -10,11 +10,11 @@ public class Mover2D : MonoBehaviour
 
         if (Keyboard.current.wKey.isPressed)
         {
-            dir.y = 1;
+            dir.z = 1;
         }
         if (Keyboard.current.sKey.isPressed)
         {
-            dir.y = -1;
+            dir.z = -1;
         }
         if (Keyboard.current.dKey.isPressed)
         {
@@ -24,6 +24,8 @@ public class Mover2D : MonoBehaviour
         {
             dir.x = -1;
         }
+
+        dir = transform.TransformDirection(dir);
 
         transform.position = transform.position + dir * speed * Time.deltaTime;
     }
